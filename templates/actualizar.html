@@ -1,0 +1,58 @@
+{% extends './index.html' %}
+{% block contenido %}
+<div class="container d-flex justify-content-center">
+    <form id="formProducto" action="/editarProducto" method="post" enctype="multipart/form-data">
+        <input type="hidden" name="id" value="{{ producto['_id'] }}">
+        <div class="row"> 
+            <div class="col">
+                <h3 class="text-center fw-bold bg-primary text-white">Editar Producto</h3>
+            </div>
+        </div>
+        <div class="row mb-3">
+            <div class="col">
+                <span class="fw-bold" for="codigo">Código:</span>
+                <input type="text" name="codigo" id="codigo" class="form-control" value="{{ producto['codigo'] }}" required>
+            </div>
+        </div>
+        <div class="row mb-3">
+            <div class="col">
+                <span class="fw-bold" for="nombre">Nombre:</span>
+                <input type="text" name="nombre" id="nombre" class="form-control" value="{{ producto['nombre'] }}" required>
+            </div>
+        </div>
+        <div class="row mb-3">
+            <div class="col">
+                <span class="fw-bold" for="precio">Precio:</span>
+                <input type="text" name="precio" id="precio" class="form-control" value="{{ producto['precio'] }}" required>
+            </div>
+        </div>
+        <div class="row mb-3">
+            <div class="col">
+                <label class="fw-bold" for="cdCategoria">Categoría:</label>
+                <select type="text" name="cdCategoria" id="cdCategoria" class="form-select" required>
+                    <option value="">Seleccionar</option>
+                    {% for c in categorias %}
+                        <option value="{{ c['_id'] }}">{{ c['nombre'] }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+        </div>
+        <div class="mb-3">
+            <label class="fw-bold" for="fileFoto">Foto (jpg):</label>
+            <input type="file" name="fileFoto" id="fileFoto" onchange="visualizarFoto(event)" class="form-control" accept=".jpg" required>
+        </div>
+        <div class="row mb-3">
+            <div class="col">
+                <img id="imagenProducto" src="{{ producto.url_foto }}" width="100" height="100">
+            </div>
+        </div>
+        <div class="row mb-3">
+            <div class="col">
+                <button type="submit" class="btn btn-outline-success">Actualizar</button>
+                <a href="/"><button type="button" class="btn btn-outline-danger">Cancelar</button></a>
+            </div>
+        </div>
+    </form>
+</div>
+{% endblock %}
+

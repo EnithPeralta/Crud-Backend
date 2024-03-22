@@ -1,0 +1,30 @@
+{% extends "index.html"%}
+{%block encabezado%}
+ {% include "encabezado.html"%}
+{% endblock%}
+{%block contenido%}
+<script src="../static/js/app.js"></script>
+    <div class="IniciarSesion">
+        <h3>Start Of Section</h3>
+        <form action="/iniciarSesion" method="post" class="w-75">
+            <div>
+                <label for="usuario">User</label>
+                <input type="text" name="usuario" id="usuario" class="form-control" required>
+            </div>
+            <div>
+                <label for="password">Password</label>
+                <input type="password" name="password" id="password" class="form-control" required>
+            </div>
+            <div class="p-2">
+                <button class="btn btn-outline-primary" type="button" onclick="iniciarSesion()">Start</button>
+                <button class="btn btn-outline-danger">Cancel</button>
+            </div>
+        </form>
+    </div>
+{%if mensaje%}
+    <script>swal.file('Inicio Seccion','{{mensaje}}','info')</script>
+{% endif%}
+{% endblock%}
+{%block piePagina %}
+    {% include 'piePagina.html'%}
+{%endblock%}
